@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Cobra Python Runner - WASM accelerated Python execution in browser">
+    <title>Cobra | Python Runner</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <div class="runner">
+            <div class="header">
+                <div class="title-section">
+                    <h1>COBRA</h1>
+                    <span class="badge">WASM</span>
+                    <span class="badge secondary">10x</span>
+                </div>
+                <div class="controls">
+                    <button id="runButton" class="btn-primary">Run</button>
+                    <div class="toggle-group">
+                        <button id="codeTab" class="toggle-btn active">Code</button>
+                        <button id="outputTab" class="toggle-btn">Output</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="codePanel" class="panel active">
+                <div class="panel-header">
+                    <span>Python 3.12+</span>
+                    <span id="libraryStatus" class="status-text">Initializing...</span>
+                </div>
+                <textarea id="codeEditor" class="code-editor" spellcheck="false"># Cobra Python Runner
+# WASM accelerated execution
+
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+result = [fibonacci(i) for i in range(15)]
+print(f"Fibonacci sequence: {result}")
+
+# List comprehension performance
+squares = [x**2 for x in range(20)]
+print(f"Squares: {squares[:5]}...")
+
+# Dictionary example
+data = {i: chr(65 + i) for i in range(5)}
+print(f"Data mapping: {data}")
+
+print("Execution completed successfully!")
+</textarea>
+            </div>
+
+            <div id="outputPanel" class="panel">
+                <div class="panel-header">
+                    <span>Console Output</span>
+                    <button id="clearOutput" class="btn-icon">Clear</button>
+                </div>
+                <div id="terminalOutput" class="terminal"></div>
+            </div>
+        </div>
+        <div class="footer">
+            <span id="executionTime">Ready</span>
+            <span>|</span>
+            <span>WASM Engine · Global CDN</span>
+        </div>
+    </div>
+
+    <script src="js/wasmBridge.js"></script>
+    <script src="js/libLoader.js"></script>
+    <script src="js/editor.js"></script>
+    <script src="js/terminal.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
